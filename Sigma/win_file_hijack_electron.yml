@@ -1,0 +1,21 @@
+title: Electron Application Search-Order Hijack 
+id: 9c787eb6-9fc4-457e-b815-e161e1ed3532
+status: stable
+description: Detects the creation of an Electron hijack abusing the application search-order for persistence, execution and defense evasion.
+references:
+    - https://github.com/electron/electron/commit/57d088517ceef0d6c7bd6dde6fd740813c3cf943#diff-913b4eb0955fc49f1792447dc4dc58049e89d29b8d6366ba986fcb51b48963a4
+author: 'Maxime Thiebaut (0xThiebaut)'
+date: 2021/11/15
+tags:
+    - attack.persistence
+    - attack.execution
+    - attack.defense_evasion
+    - attack.t1574
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection:
+        TargetFilename|endswith: '\app\package.json.js'
+    condition: selection
+level: medium
