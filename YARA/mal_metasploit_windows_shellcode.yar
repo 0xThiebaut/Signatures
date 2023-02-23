@@ -129,7 +129,7 @@ rule mal_metasploit_shellcode_windows_shell_bind_tcp: RELEASED MALWARE BACKDOOR 
 rule mal_metasploit_shellcode_windows_shell_hidden_bind_tcp: RELEASED MALWARE BACKDOOR TA0011 T1095 {
     meta:
         id = "6HQ4oEHcqNUBbmJxwjBpVZ"
-        fingerprint = "256c1ac01d950115d1a583a0ade8a1afcc2a339f0fb793d5772accdf90ad8568"
+        fingerprint = "cf568dda6d7ec12ed2e9ed3f24865b92bb243cae359f3c7264c8819f4ae8a430"
         version = "1.0"
         creation_date = "2021-09-02"
         first_imported = "2023-02-23"
@@ -173,7 +173,7 @@ rule mal_metasploit_shellcode_windows_shell_hidden_bind_tcp: RELEASED MALWARE BA
                             08 87 1d 60 // kernel32.dll::WaitForSingleObject
                             [02-15]
                             f0 b5 a2 56 // kernel32.dll::ExitProcess
-                            [01-10]//import "vt"    //VirusTotal-specific statement
+                            [01-10]
                             a6 95 bd 9d // kernel32.dll::GetVersion
                             [10-30]
                             47 13 72 6f // ntdll.dll::RtlExitUserThread
