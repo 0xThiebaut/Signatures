@@ -4,6 +4,8 @@ rule mal_injection_function_stomping: TESTING MALWARE LOADER TA0005 T1055 {
         fingerprint = "e8b5822216df6bd8255e0ba031646293d9beff7148a729b7893b5875559d0e96"
         version = "1.0"
         creation_date = "2022-01-25"
+        first_imported = "2023-02-23"
+        last_modified = "2023-02-23"
         status = "TESTING"
         sharing = "TLP:WHITE"
         source = "THIEBAUT.DEV"
