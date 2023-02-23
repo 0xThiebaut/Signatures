@@ -1,4 +1,4 @@
-rule mal_electron_js_backdoor: TESTING MALWARE BACKDOOR TA0002 T1059 T1059_007 {
+rule mal_electron_js_backdoor: RELEASED MALWARE BACKDOOR TA0002 T1059 T1059_007 {
     meta:
         id = "6GSHZaIgC9X671uyawFtRs"
         fingerprint = "eb8c30a66ae4f4989fce85f1ee9b451a2cf7691af4a3b55e20d6f46ab36ca18f"
