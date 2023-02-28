@@ -185,8 +185,8 @@ rule mal_metasploit_shellcode_windows_shell_hidden_bind_tcp: RELEASED MALWARE BA
 rule mal_metasploit_encode_xor_x64 : RELEASED MALWARE BACKDOOR TA0005 T1027 T1027_002 {
     meta:
         id = "zGjRO3lps1ui10W9jN19C"
-        fingerprint = "4b3b046cc091d17ae124f07a5b0112f40b32d9aa7279cf379d1213dca821b5bf"
-        version = "1.0"
+        fingerprint = "bed08d8cf7527fd89c91dfbc076f05abf7eca6e2d28e9a973e598d0cbf38780b"
+        version = "1.1"
         creation_date = "2023-02-28"
         first_imported = "2023-02-28"
         last_modified = "2023-02-28"
@@ -216,6 +216,7 @@ rule mal_metasploit_encode_xor_x64 : RELEASED MALWARE BACKDOOR TA0005 T1027 T102
         $encryption and
         // And validate the XOR'ed section is shellcode
         for any i in (1..#encryption) : (
-            uint8(@encryption[i] + 0x13) ^ uint8(@encryption[i] + 0x27) == 0xfc // cld
+            uint8(@encryption[i] + 0x27) == 0xfc or                             // cld decrypted (e.g. memory dump)
+            uint8(@encryption[i] + 0x13) ^ uint8(@encryption[i] + 0x27) == 0xfc // cld encrypted (i.e. pre-execution)
         )
 }
