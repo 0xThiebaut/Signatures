@@ -1,7 +1,7 @@
 rule mal_syscall_hwsyscalls: TESTING MALWARE OBFUSCATOR TA0002 T1106 {
     meta:
         id = "5R3sUrHeZZAeQe3gaAmWEL"
-        fingerprint = "2eb432c3523bdb2fd92810985d1dfd7b3ce53c42383003e4176d09d18d771dc5"
+        fingerprint = "5b40b828a8026ee7910b362a4f94da97b866c9f08b6b577419f5d089c323a8a0"
         version = "1.0"
         creation_date = "2023-02-28"
         first_imported = "2023-02-28"
@@ -15,6 +15,7 @@ rule mal_syscall_hwsyscalls: TESTING MALWARE OBFUSCATOR TA0002 T1106 {
         malware = "OBFUSCATOR"
         mitre_att = "T1106"
         reference = "https://github.com/Dec0ne/HWSyscalls/blob/ff832ed11a95092478eeebb3422fc35c7be7df31/Src/HWSyscalls.cpp"
+        hash = "b27ee235a1caeeeecfc4c7023e894d08c1cbffcb86b4f315974217def617a0c7"
 
     strings:
         // Common data

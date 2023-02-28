@@ -181,3 +181,41 @@ rule mal_metasploit_shellcode_windows_shell_hidden_bind_tcp: RELEASED MALWARE BA
     condition:
         any of ($import_*) and $imphashes
 }
+
+rule mal_metasploit_encode_xor_x64 : RELEASED MALWARE BACKDOOR TA0005 T1027 T1027_002 {
+    meta:
+        id = "zGjRO3lps1ui10W9jN19C"
+        fingerprint = "4b3b046cc091d17ae124f07a5b0112f40b32d9aa7279cf379d1213dca821b5bf"
+        version = "1.0"
+        creation_date = "2023-02-28"
+        first_imported = "2023-02-28"
+        last_modified = "2023-02-28"
+        status = "RELEASED"
+        sharing = "TLP:WHITE"
+        source = "THIEBAUT.DEV"
+        author = "Maxime THIEBAUT (@0xThiebaut)"
+        description = "Detects XOR-encoded Metasploit shellcode"
+        category = "MALWARE"
+        malware = "OBFUSCATOR"
+        mitre_att = "T1027"
+        reference = "https://github.com/rapid7/metasploit-framework/blob/b8178397a9aba19dc7a80ee1346d8685674cc0ff/modules/encoders/x64/xor.rb#L36-L42"
+        hash = "37cf2f4a421ff8feb097f62eefcca647bc50acc571f7f620885d10741a2d09a5"
+
+    strings:
+        $encryption = {
+            48 31 c9                        // xor rcx, rcx
+            48 81 e9 ?? ?? ?? ??            // sub ecx, block_count
+            48 8d 05 ef ff ff ff            // lea rax, [rel 0x0]
+            48 bb ?? ?? ?? ?? ?? ?? ?? ??   // mov rbx, xor_key
+            48 31 58 27                     // xor [rax+0x27], rbx
+            48 2d f8 ff ff ff               // sub rax, -8
+            e2 f4                           // loop 0x1b
+        }
+    condition:
+        // Detect the encryption stub
+        $encryption and
+        // And validate the XOR'ed section is shellcode
+        for any i in (1..#encryption) : (
+            uint8(@encryption[i] + 0x13) ^ uint8(@encryption[i] + 0x27) == 0xfc // cld
+        )
+}
