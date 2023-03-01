@@ -220,3 +220,93 @@ rule mal_metasploit_encode_xor_x64 : RELEASED MALWARE BACKDOOR TA0005 T1027 T102
             uint8(@encryption[i] + 0x13) ^ uint8(@encryption[i] + 0x27) == 0xfc // cld encrypted (i.e. pre-execution)
         )
 }
+
+rule mal_metasploit_shellcode_windows_meterpreter_reverse_http_x64: RELEASED MALWARE BACKDOOR TA0011 T1095 {
+    meta:
+        id = "4jQXv3cD0UvsQfhgndgWy8"
+        fingerprint = "77a24b255c5ef6068896176dd36b5b8ae9ce75d7d8affa3292be66f042f07f8a"
+        version = "1.0"
+        creation_date = "2023-03-01"
+        first_imported = "2023-03-01"
+        last_modified = "2023-03-01"
+        status = "RELEASED"
+        sharing = "TLP:WHITE"
+        source = "THIEBAUT.DEV"
+        author = "Maxime THIEBAUT (@0xThiebaut)"
+        description = "Detects Metasploit import-hashes from the windows/x64/meterpreter/reverse_http payload"
+        category = "MALWARE"
+        malware = "BACKDOOR"
+        mitre_att = "T1071"
+        reference = "https://blog.nviso.eu/2021/09/02/anatomy-and-disruption-of-metasploit-shellcode/"
+        hash = "2c4c41f21a5b8681a23b2a500b844dc7c4ad5d3ec6c92c841a23f6068567326a"
+
+    strings:
+        $import         = "wininet" fullword
+        $imphashes_1    = {
+                            4c 77 26 07 // kernel32.dll::LoadLibraryA
+                            [15-25]
+                            3a 56 79 a7 // wininet.dll::InternetOpenA
+                            [40-60]
+                            57 89 9f c6 // wininet.dll::InternetConnectA
+                          }
+        $imphashes_2    = {
+                            eb 55 2e 3b // wininet.dll::HttpOpenRequestA
+                            [20-30]
+                            2d 06 18 7b // wininet.dll::HttpSendRequestA
+                            [10-20]
+                            44 f0 35 e0 // kernel32.dll::Sleep
+                            [25-40]
+                            58 a4 53 e5 // kernel32.dll::VirtualAlloc
+                            [20-35]
+                            12 96 89 e2 // wininet.dll::InternetReadFile
+                          }
+    condition:
+        all of them
+}
+
+rule mal_metasploit_shellcode_windows_meterpreter_reverse_http_x86: RELEASED MALWARE BACKDOOR TA0011 T1095 {
+    meta:
+        id = "70MTcX1QJqCy2yCgyLIa00"
+        fingerprint = "acd46b57de80a4bbb074d11a7f7b5d2c5ee4f15a6f25080ddf63c976f813cb3d"
+        version = "1.0"
+        creation_date = "2023-03-01"
+        first_imported = "2023-03-01"
+        last_modified = "2023-03-01"
+        status = "RELEASED"
+        sharing = "TLP:WHITE"
+        source = "THIEBAUT.DEV"
+        author = "Maxime THIEBAUT (@0xThiebaut)"
+        description = "Detects Metasploit import-hashes from the windows/meterpreter/reverse_http payload"
+        category = "MALWARE"
+        malware = "BACKDOOR"
+        mitre_att = "T1071"
+        reference = "https://blog.nviso.eu/2021/09/02/anatomy-and-disruption-of-metasploit-shellcode/"
+        hash = "6675cdf56a8dbde5b5d745145ad41c7a717000d7dd03ac4baa88c8647733d0ab"
+
+    strings:
+        $LoadLibraryA   = {
+                            6E 65 74 00 // wini(net)
+                            [01-03]
+                            77 69 6E 69 // (wini)net
+                            [01-05]
+                            4C 77 26 07 // kernel32.dll::LoadLibraryA
+                        }
+        $InternetOpenA  = { 3a 56 79 a7 } // wininet.dll::InternetOpenA
+        $imphashes      = {
+                            57 89 9f c6 // wininet.dll::InternetConnectA
+                            [15-25]
+                            eb 55 2e 3b // wininet.dll::HttpOpenRequestA
+                            [05-15]
+                            2d 06 18 7b // wininet.dll::HttpSendRequestA
+                            [05-15]
+                            44 f0 35 e0 // kernel32.dll::Sleep
+                            [20-30]
+                            58 a4 53 e5 // kernel32.dll::VirtualAlloc
+                            [10-20]
+                            12 96 89 e2 // wininet.dll::InternetReadFile
+                            [30-50]
+                            f0 b5 a2 56 // kernel32.dll::ExitProcess
+                          }
+    condition:
+        all of them
+}
