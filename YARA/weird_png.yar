@@ -27,9 +27,9 @@ rule weird_png_data_after_end {
         $header at 0x00
         // and is followed by the mandatory image header chunk.
         and $chunk_IHDR at 0x08
-        // An acropalypse image requires a...
+        // An malformed PNG requires a...
         and for any i in (1..#types): (
-            // valid end chunk...
+            // valid end-chunk...
             $chunk_IEND at (uint32be(@types[i]-4) + @types[i] + 0x08) and
             // with additional data afterwards.
             (uint32be(@types[i]-4) + @types[i] + 0x14) < filesize
@@ -58,6 +58,6 @@ rule weird_png_acropalypse {
         $chunk_IEND = {00 00 00 00 49 45 4E 44}
 
     condition:
-        // An Acropalypse PNG has data after the first end chuck as well as an end chunk closing the file.
+        // An acropalypse PNG has data after the first end-chuck as well as an end-chunk closing the file.
         weird_png_data_after_end and $chunk_IEND at filesize-0x0C
 }
