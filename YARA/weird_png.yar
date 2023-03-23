@@ -1,8 +1,8 @@
 rule weird_png_data_after_end {
     meta:
         id = "B6qzTNn5O3u7peuIgFwSO"
-        fingerprint = "465b1a8b40ba9999f28e82ddf96162ff498f8ac395468daa335a18b51a3dd999"
-        version = "1"
+        fingerprint = "7cb61cf2020b13a8742d75af9e2a909e47c5c5abd745d5336e036fdcded414aa"
+        version = "1.1"
         creation_date = "2023-03-23"
         first_imported = "2023-03-23"
         last_modified = "2023-03-23"
@@ -30,18 +30,17 @@ rule weird_png_data_after_end {
         // An acropalypse image requires a...
         and for any i in (1..#types): (
             // valid end chunk...
-            $chunk_IEND at (uint32be(@types[i]-4) + @types[i] + 4 + 4) and
-            // with additional data afterwards
-            (uint32be(@types[i]-4) + @types[i] + 4 + 4 + 0xC) < filesize
-            // at least anoth end chunk can be found
+            $chunk_IEND at (uint32be(@types[i]-4) + @types[i] + 0x08) and
+            // with additional data afterwards.
+            (uint32be(@types[i]-4) + @types[i] + 0x14) < filesize
         )
 }
 
 rule weird_png_acropalypse {
     meta:
         id = "3hzbpn9OXCHvKIyYNY0M29"
-        fingerprint = "e15a66d520dfad4c1e7716321e904fa388ede127eabfec8105356f1799ea6443"
-        version = "1"
+        fingerprint = "500cdc0437a0f12a10ad740186dcef7852c11ebc415efeecd2d1b4cf2d62ef60"
+        version = "1.1"
         creation_date = "2023-03-23"
         first_imported = "2023-03-23"
         last_modified = "2023-03-23"
@@ -59,5 +58,6 @@ rule weird_png_acropalypse {
         $chunk_IEND = {00 00 00 00 49 45 4E 44}
 
     condition:
-        weird_png_data_after_end and $chunk_IEND at filesize-0xC
+        // An Acropalypse PNG has data after the first end chuck as well as an end chunk closing the file.
+        weird_png_data_after_end and $chunk_IEND at filesize-0x0C
 }
