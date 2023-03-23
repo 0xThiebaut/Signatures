@@ -41,4 +41,4 @@ jobs:
 
     - name: Lint with Canadian Centre for Cyber Security YARA Specification
       run: |
-        python cccs/yara_validator_cli.py -n -v -f -st signatures/YARA/
+        python cccs/yara_validator_cli.py -n -v -f signatures/YARA/

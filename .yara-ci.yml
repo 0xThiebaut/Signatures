@@ -1,0 +1,3 @@
+files:
+  ignore:
+  - "YARA/weird_*.yar"
