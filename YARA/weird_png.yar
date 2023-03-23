@@ -17,16 +17,14 @@ rule weird_png_data_after_end {
         reference = "https://www.bleepingcomputer.com/news/microsoft/windows-11-snipping-tool-privacy-bug-exposes-cropped-image-content/"
 
     strings:
-        $header = {89 50 4E 47 0D 0A 1A 0A}
-        $chunk_IHDR = {00 00 00 0D 49 48 44 52}
         $chunk_IEND = {00 00 00 00 49 45 4E 44}
         $types = /PLTE|IDAT|bKGD|cHRM|dSIG|eXIf|gAMA|hIST|iCCP|iTXt|pHYs|sBIT|sPLT|sRGB|sTER|tEXt|tIME|tRNS|zTXt/
 
     condition:
         // A PNG starts with a header...
-        $header at 0x00
+        uint32(0) == 0x474e5089 and uint32(4) == 0x0a1a0a0d
         // and is followed by the mandatory image header chunk.
-        and $chunk_IHDR at 0x08
+        and uint32(8) == 0x0d000000 and uint32(12) == 0x52444849
         // An malformed PNG requires a...
         and for any i in (1..#types): (
             // valid end-chunk...
