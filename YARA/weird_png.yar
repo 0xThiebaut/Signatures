@@ -1,8 +1,8 @@
 rule weird_png_data_after_end {
     meta:
         id = "B6qzTNn5O3u7peuIgFwSO"
-        fingerprint = "7cb61cf2020b13a8742d75af9e2a909e47c5c5abd745d5336e036fdcded414aa"
-        version = "1.1"
+        fingerprint = "9aacd62b49ab6c51b9483329c699e72690da0152b6a191c950b4ae01dd9bc7e4"
+        version = "1.2"
         creation_date = "2023-03-23"
         first_imported = "2023-03-23"
         last_modified = "2023-03-23"
