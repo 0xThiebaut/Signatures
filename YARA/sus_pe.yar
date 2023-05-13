@@ -3,8 +3,8 @@ import "pe"
 rule sus_pe_free_without_allocation: TESTING SUSPICIOUS TA0005 T1027 T1027_007 {
     meta:
         id = "5BqhLNZUKDAagE3Pf0GHSf"
-        fingerprint = "2a0e32db1334bfabbc9675e75e1a7968ba517f069e0989440ce05f85cc8b9bed"
-        version = "1.0"
+        fingerprint = "7b6b4edcc9349c23ff837084934c15034888c8dd744a5cb32bf662802bdc822b"
+        version = "1.1"
         creation_date = "2023-05-13"
         first_imported = "2023-05-13"
         last_modified = "2023-05-13"
@@ -27,6 +27,5 @@ rule sus_pe_free_without_allocation: TESTING SUSPICIOUS TA0005 T1027 T1027_007 {
             or pe.imports("kernel32.dll", "VirtualAllocEx")
             or pe.imports("kernel32.dll", "VirtualAllocExNuma")
             or pe.imports("kernel32.dll", "VirtualAllocFromApp")
-            or pe.imports("fxstiff.dll", "TiffExtractFirstPage")
         )
 }
