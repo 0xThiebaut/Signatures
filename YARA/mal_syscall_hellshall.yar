@@ -1,4 +1,4 @@
-rule mal_syscall_hellshall: TESTING MALWARE OBFUSCATOR TA0002 T1106 {
+rule mal_syscall_hellshall: RELEASED MALWARE OBFUSCATOR TA0002 T1106 {
     meta:
         id = "okKC4Zt2kjWBvbcVqTf6F"
         fingerprint = "3770e9ec6fe18a9709ce7bc0cd8f454a94261eeb283496d4eb1b6c0781e92d69"
@@ -6,7 +6,7 @@ rule mal_syscall_hellshall: TESTING MALWARE OBFUSCATOR TA0002 T1106 {
         creation_date = "2023-04-11"
         first_imported = "2023-04-11"
         last_modified = "2023-04-11"
-        status = "TESTING"
+        status = "RELEASED"
         sharing = "TLP:WHITE"
         source = "THIEBAUT.DEV"
         author = "Maxime THIEBAUT (@0xThiebaut)"

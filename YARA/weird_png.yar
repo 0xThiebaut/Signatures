@@ -1,4 +1,4 @@
-rule weird_png_data_after_end {
+rule weird_png_data_after_end: TESTING WEIRD T1027 T1027_003 {
     meta:
         id = "B6qzTNn5O3u7peuIgFwSO"
         fingerprint = "9aacd62b49ab6c51b9483329c699e72690da0152b6a191c950b4ae01dd9bc7e4"
@@ -34,7 +34,7 @@ rule weird_png_data_after_end {
         )
 }
 
-rule weird_png_acropalypse {
+rule weird_png_acropalypse: TESTING WEIRD T1027 T1027_003 {
     meta:
         id = "3hzbpn9OXCHvKIyYNY0M29"
         fingerprint = "500cdc0437a0f12a10ad740186dcef7852c11ebc415efeecd2d1b4cf2d62ef60"

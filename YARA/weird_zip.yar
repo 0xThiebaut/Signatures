@@ -1,4 +1,4 @@
-rule weird_zip_high_compression_ratio {
+rule weird_zip_high_compression_ratio: RELEASED WEIRD T1204 T1204_002 {
     meta:
         id = "5n0TXEMYZ3x4OEpXEa4PUm"
         fingerprint = "526a726a0bde1ab1fb5832fea08c150b49771f7dbea2bc65ea342bea59ef3d44"
@@ -6,13 +6,13 @@ rule weird_zip_high_compression_ratio {
         creation_date = "2023-04-06"
         first_imported = "2023-04-06"
         last_modified = "2023-04-06"
-        status = "TESTING"
+        status = "RELEASED"
         sharing = "TLP:WHITE"
         source = "THIEBAUT.DEV"
         author = "Maxime THIEBAUT (@0xThiebaut)"
         description = "Detects single-entry ZIP files with a suspiciously high compression ratio (>100:1) and decompressed size above the 500MB AV limit"
         category = "INFO"
-        mitre_att = "T1027.001"
+        mitre_att = "T1204.002"
         reference = "https://twitter.com/Cryptolaemus1/status/1633099154623803394"
         hash = "4d9a6dfca804989d40eeca9bb2d90ef33f3980eb07ca89bbba06d0ef4b37634b"
 

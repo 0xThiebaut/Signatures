@@ -1,4 +1,4 @@
-rule mal_injection_function_stomping: TESTING MALWARE LOADER TA0005 T1055 {
+rule mal_injection_function_stomping: RELEASED MALWARE LOADER TA0005 T1055 {
     meta:
         id = "6UdqYRxOBY0mQcVrIM50lI"
         fingerprint = "c79c0d5b4fb36149eb3809fe8b099de3bad42f35e35bba6924d29ae943eeabc1"
@@ -6,7 +6,7 @@ rule mal_injection_function_stomping: TESTING MALWARE LOADER TA0005 T1055 {
         creation_date = "2022-01-25"
         first_imported = "2023-02-23"
         last_modified = "2023-03-01"
-        status = "TESTING"
+        status = "RELEASED"
         sharing = "TLP:WHITE"
         source = "THIEBAUT.DEV"
         author = "Maxime THIEBAUT (@0xThiebaut)"

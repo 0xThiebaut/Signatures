@@ -1,4 +1,4 @@
-rule mal_loader_havoc_x64: TESTING MALWARE LOADER TA0005 T1027 T1027_007 {
+rule mal_loader_havoc_x64: RELEASED MALWARE LOADER TA0005 T1027 T1027_007 {
     meta:
         id = "4P6Z0kQNZdiDMvT7A21ygW"
         fingerprint = "e734c13b40a026fc382af496be7eeec1a6da1bbf40de28090c854a0500b736cd"
@@ -6,7 +6,7 @@ rule mal_loader_havoc_x64: TESTING MALWARE LOADER TA0005 T1027 T1027_007 {
         creation_date = "2023-04-11"
         first_imported = "2023-04-11"
         last_modified = "2023-04-11"
-        status = "TESTING"
+        status = "RELEASED"
         sharing = "TLP:WHITE"
         source = "THIEBAUT.DEV"
         author = "Maxime THIEBAUT (@0xThiebaut)"
@@ -33,7 +33,7 @@ rule mal_loader_havoc_x64: TESTING MALWARE LOADER TA0005 T1027 T1027_007 {
         $hashing
 }
 
-rule mal_loader_custom_havoc_x64: TESTING MALWARE LOADER TA0005 T1027 T1027_007 {
+rule mal_loader_custom_havoc_x64: RELEASED MALWARE LOADER TA0005 T1027 T1027_007 {
     meta:
         id = "1EmdHiqQ6Y4163shVAW5yI"
         fingerprint = "46c414b56ccf97ef65b1f1603aa64705a8ffb39b5d9e270e00d21774e79b561a"
@@ -41,7 +41,7 @@ rule mal_loader_custom_havoc_x64: TESTING MALWARE LOADER TA0005 T1027 T1027_007 
         creation_date = "2023-04-11"
         first_imported = "2023-04-11"
         last_modified = "2023-04-11"
-        status = "TESTING"
+        status = "RELEASED"
         sharing = "TLP:WHITE"
         source = "THIEBAUT.DEV"
         author = "Maxime THIEBAUT (@0xThiebaut)"
