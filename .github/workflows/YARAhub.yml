@@ -37,4 +37,5 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: YARAhub
-        path: $GITHUB_WORKSPACE/out/
+        path: ${{ github.workspace }}/out/*.yar
+        if-no-files-found: error
