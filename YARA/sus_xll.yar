@@ -31,7 +31,7 @@ rule sus_xll_xlAutoOpen_empty: TESTING SUSPICIOUS TA0003 T1137 T1137_006 {
 
 rule sus_xll_xlAutoClose_empty: TESTING SUSPICIOUS TA0003 T1137 T1137_006 {
     meta:
-        id = "IKlkRzFlrc1iw7JdK41Ul"
+        id = "6of2wrJksv1WZcHOthgatn"
         fingerprint = "819b0f27d9d0ebdf486646a0d9e71e1cb12c4c3691094d8633e0c93a07cbc24b"
         version = "1.0"
         creation_date = "2023-05-13"
