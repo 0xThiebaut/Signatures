@@ -31,7 +31,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        if [ -f cccs/requirements.txt ]; then pip install -r cccs/requirements.txt; fi
+        if [ -f $GITHUB_WORKSPACE/cccs/requirements.txt ]; then pip install -r $GITHUB_WORKSPACE/cccs/requirements.txt; fi
         
     - name: Checkout signatures
       uses: actions/checkout@v3
@@ -41,4 +41,4 @@ jobs:
 
     - name: Lint with Canadian Centre for Cyber Security YARA Specification
       run: |
-        python cccs/yara_validator_cli.py -n -v -f signatures/YARA/
+        python $GITHUB_WORKSPACE/cccs/yara_validator_cli.py -n -v -f $GITHUB_WORKSPACE/signatures/YARA/

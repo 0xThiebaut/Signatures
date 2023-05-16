@@ -27,12 +27,12 @@ if __name__ == "__main__":
     parser.add_argument('--dir', metavar='DIR', type=str, required=False, default='./', help='a directory in which rules should be saved')
 
     args = parser.parse_args()
-    parser = plyara.Plyara()
+    yara = plyara.Plyara()
 
     for expression in args.path:
         for filepath in glob.iglob(expression, recursive=True):
             with open(filepath, mode='r') as file:
-                for rule in parser.parse_string(file.read()):
+                for rule in yara.parse_string(file.read()):
                     # Date when the YARA rule has been written. Format: YYYY-MM-DD
                     if not contains(rule['metadata'], 'date'):
                         rule['metadata'].append({'date': first(rule['metadata'], 'last_modified', datetime.today().strftime('%Y-%m-%d'))})
@@ -64,6 +64,6 @@ if __name__ == "__main__":
                     # Quite restrictive as DRL is not supported (yet).
                     if not contains(rule['metadata'], 'yarahub_rule_sharing_tlp'):
                         rule['metadata'].append({'yarahub_rule_sharing_tlp': 'TLP:AMBER'})
-                    with open(path.join(args.dir, f'{identifier}.yar'), mode='w') as compiled:
+                    with open(path.join(args.dir, f'{rule["rule_name"]}_{identifier}.yar'), mode='w') as compiled:
                         compiled.write(utils.rebuild_yara_rule(rule, condition_indents=True))
-            parser.clear()
+            yara.clear()
