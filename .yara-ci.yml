@@ -1,3 +1,5 @@
 files:
+  accept:
+  - "YARA/**.yar"
   ignore:
   - "YARA/weird_*.yar"
