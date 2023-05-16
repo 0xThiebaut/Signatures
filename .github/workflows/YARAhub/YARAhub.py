@@ -64,6 +64,8 @@ if __name__ == "__main__":
                     # Quite restrictive as DRL is not supported (yet).
                     if not contains(rule['metadata'], 'yarahub_rule_sharing_tlp'):
                         rule['metadata'].append({'yarahub_rule_sharing_tlp': 'TLP:AMBER'})
-                    with open(path.join(args.dir, f'{rule["rule_name"]}_{identifier}.yar'), mode='w') as compiled:
+                    destination = path.join(args.dir, f'{rule["rule_name"]}_{identifier}.yar')
+                    with open(destination, mode='w') as compiled:
                         compiled.write(utils.rebuild_yara_rule(rule, condition_indents=True))
+                        print(destination)
             yara.clear()
