@@ -24,7 +24,7 @@ rule sus_xll_xlAutoOpen_empty: TESTING SUSPICIOUS TA0003 T1137 T1137_006 {
             uint8(pe.export_details[pe.exports_index("xlAutoOpen")].offset) == 0xC3  // ret
             or (
                 uint16(pe.export_details[pe.exports_index("xlAutoOpen")].offset) == 0xC033     // xor eax eax
-                and uint8(pe.export_details[pe.exports_index("xlAutoOpen")].offset+2) == 0xC3  // xor eax eax
+                and uint8(pe.export_details[pe.exports_index("xlAutoOpen")].offset+2) == 0xC3  // ret
             )
         )
 }
@@ -52,7 +52,7 @@ rule sus_xll_xlAutoClose_empty: TESTING SUSPICIOUS TA0003 T1137 T1137_006 {
             uint8(pe.export_details[pe.exports_index("xlAutoClose")].offset) == 0xC3  // ret
             or (
                 uint16(pe.export_details[pe.exports_index("xlAutoClose")].offset) == 0xC033     // xor eax eax
-                and uint8(pe.export_details[pe.exports_index("xlAutoClose")].offset+2) == 0xC3  // xor eax eax
+                and uint8(pe.export_details[pe.exports_index("xlAutoClose")].offset+2) == 0xC3  // ret
             )
         )
 }
