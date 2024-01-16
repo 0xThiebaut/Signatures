@@ -59,7 +59,11 @@ if __name__ == "__main__":
                         rule['metadata'].append({'yarahub_license': 'CC BY-NC-ND 4.0'})
                     # This TLP defines whether YARA matches of this rule should be publicly visible or not
                     if not contains(rule['metadata'], 'yarahub_rule_matching_tlp'):
-                        rule['metadata'].append({'yarahub_rule_matching_tlp': first(rule['metadata'], 'sharing')})
+                        tlp = first(rule['metadata'], 'sharing')
+                        # Use legacy TLP codes
+                        if tlp == "TLP:CLEAR":
+                            tlp = "TLP:WHITE"
+                        rule['metadata'].append({'yarahub_rule_matching_tlp': tlp})
                     # This TLP defines whether the YARA rule itself should be shared or not.
                     # Quite restrictive as DRL is not supported (yet).
                     if not contains(rule['metadata'], 'yarahub_rule_sharing_tlp'):
